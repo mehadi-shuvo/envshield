@@ -1,0 +1,44 @@
+{
+  "name": "env-shield",
+  "version": "1.0.0",
+  "description": "🛡️ Validate and sync .env files against .env.example with ease.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "env-shield": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup src/cli.ts src/index.ts --format esm,cjs --dts --clean --minify",
+    "dev": "ts-node src/cli.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "env",
+    "dotenv",
+    "environment-variables",
+    "validation",
+    "sync",
+    "cli",
+    "nextjs",
+    "react"
+  ],
+  "author": "Mehadi Hasan",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "commander": "^12.0.0",
+    "dotenv": "^16.4.5",
+    "picocolors": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  }
+}
