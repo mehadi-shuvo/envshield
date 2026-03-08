@@ -1,4 +1,4 @@
-# env-shield
+# ENV-Shield
 
 🛡️ **Protect your environment variables across the team**
 
@@ -43,13 +43,13 @@ NEXT_PUBLIC_APP_URL=
 2. Run validation:
 
 ```bash
-npx env-shield check
+npx envshield check
 ```
 
 3. Sync missing variables (adds empty entries to your `.env`):
 
 ```bash
-npx env-shield sync
+npx envshield sync
 ```
 
 ## CLI Commands
@@ -57,7 +57,7 @@ npx env-shield sync
 ### `check` - Validate environment variables
 
 ```bash
-env-shield check [options]
+envshield check [options]
 
 Options:
   -e, --env <path>      Path to env file (default: ".env")
@@ -70,13 +70,13 @@ Options:
 
 ```bash
 # Basic validation
-env-shield check
+envshield check
 
 # Custom file paths
-env-shield check -e .env.local -x .env.example
+envshield check -e .env.local -x .env.example
 
 # CI mode (useful for GitHub Actions, etc.)
-env-shield check --ci
+envshield check --ci
 ```
 
 **Output:**
@@ -98,7 +98,7 @@ Suggestion: Run `envshield sync` to add missing keys.
 ### `sync` - Add missing keys to .env
 
 ```bash
-env-shield sync [options]
+envshield sync [options]
 
 Options:
   -e, --env <path>      Path to env file (default: ".env")
@@ -110,10 +110,10 @@ Options:
 
 ```bash
 # Basic sync
-env-shield sync
+envshield sync
 
 # Sync with custom files
-env-shield sync -e .env.local -x .env.example
+envshield sync -e .env.local -x .env.example
 ```
 
 **Output:**
@@ -152,7 +152,7 @@ Add validation to your pre-commit hooks with husky:
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npx env-shield check
+npx envshield check
 ```
 
 ### CI/CD Pipeline
@@ -169,7 +169,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
       - run: npm ci
-      - run: npx env-shield check --ci
+      - run: npx envshield check --ci
 ```
 
 ### Package.json Scripts
@@ -177,14 +177,14 @@ jobs:
 ```json
 {
   "scripts": {
-    "validate:env": "env-shield check",
-    "sync:env": "env-shield sync",
-    "prepare": "env-shield sync"
+    "validate:env": "envshield check",
+    "sync:env": "envshield sync",
+    "prepare": "envshield sync"
   }
 }
 ```
 
-## Why env-shield?
+## Why envshield?
 
 - **Team Consistency** - Ensure all team members have the same environment variables
 - **Debug Less** - Catch missing environment variables before they cause runtime errors
@@ -193,10 +193,10 @@ jobs:
 
 ## API Reference
 
-You can also use env-shield programmatically:
+You can also use envshield programmatically:
 
 ```typescript
-import { validateEnv, syncEnv } from "env-shield";
+import { validateEnv, syncEnv } from "envshield";
 
 // Validate environment variables
 validateEnv({
@@ -213,14 +213,14 @@ syncEnv({
 
 ## Comparison
 
-| Feature               | env-shield | Other Tools |
-| --------------------- | ---------- | ----------- |
-| Zero Configuration    | ✅         | ❌          |
-| Sync Command          | ✅         | ❌          |
-| CI Mode               | ✅         | ⚠️          |
-| TypeScript Support    | ✅         | ⚠️          |
-| Empty Value Detection | ✅         | ❌          |
-| File Size             | < 10KB     | 100KB+      |
+| Feature               | envshield | Other Tools |
+| --------------------- | --------- | ----------- |
+| Zero Configuration    | ✅        | ❌          |
+| Sync Command          | ✅        | ❌          |
+| CI Mode               | ✅        | ⚠️          |
+| TypeScript Support    | ✅        | ⚠️          |
+| Empty Value Detection | ✅        | ❌          |
+| File Size             | < 10KB    | 100KB+      |
 
 ## License
 
