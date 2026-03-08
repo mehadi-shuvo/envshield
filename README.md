@@ -20,13 +20,13 @@ A lightweight CLI tool that validates and syncs your `.env` files against `.env.
 
 ```bash
 # npm
-npm install -D env-shield
+npm install -D @infocyph/envshield
 
 # yarn
-yarn add -D env-shield
+yarn add -D @infocyph/envshield
 
 # pnpm
-pnpm add -D env-shield
+pnpm add -D @infocyph/envshield
 ```
 
 ## Quick Start
