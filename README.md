@@ -4,7 +4,7 @@
 
 A lightweight CLI tool that validates and syncs your `.env` files against `.env.example`. Never miss an environment variable again!
 
-[![npm version](https://img.shields.io/npm/v/envshield.svg)](https://www.npmjs.com/package/@infocyph/envshield)
+[![npm version](https://www.npmjs.com/package/@infocyph/envshield)](https://www.npmjs.com/package/@infocyph/envshield)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Features
