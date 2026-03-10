@@ -1,241 +1,340 @@
-# ENV SHIELD
+# EnvShield
 
-**Protect your environment variables across the team**
+> Protect and manage environment variables across your team.
 
-A lightweight CLI tool that validates and syncs your `.env` files against `.env.example`. Never miss an environment variable again!
+**EnvShield** is a lightweight CLI tool that validates and synchronizes `.env` files against `.env.example`, ensuring every developer and deployment environment has the required variables.
 
+<<<<<<< HEAD
 [![npm version](https://www.npmjs.com/package/@infocyph/envshield)](https://www.npmjs.com/package/@infocyph/envshield)
+=======
+Never miss an environment variable again.
+
+[![npm version](https://img.shields.io/npm/v/@infocyph/envshield.svg)](https://www.npmjs.com/package/@infocyph/envshield)
+>>>>>>> 2eb1cf3 (fix: readme.md content)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Features
+---
 
-- ✅ **Validate** - Check if your `.env` matches `.env.example`
-- 🔄 **Sync** - Automatically add missing keys from `.env.example` to `.env`
-- 🚀 **CI Ready** - Clean output for continuous integration
-- 🎨 **Beautiful Logs** - Colorful, readable output (auto-disabled in CI)
-- 📦 **Zero Config** - Works out of the box with sensible defaults
-- 🔧 **Type Safe** - Written in TypeScript with full type definitions
+# Features
 
-## Installation
+- ✅ **Validation** — Check if `.env` matches `.env.example`
+- 🔄 **Syncing** — Automatically add missing variables
+- 🚀 **CI Friendly** — Clean output for CI pipelines
+- 🎨 **Readable Logs** — Colorful and structured CLI output
+- ⚡ **Zero Configuration** — Works instantly with defaults
+- 🧩 **TypeScript Ready** — Full type definitions included
+
+---
+
+# Installation
+
+Install as a development dependency.
 
 ```bash
-# npm
 npm install -D @infocyph/envshield
+```
 
-# yarn
+or
+
+```bash
 yarn add -D @infocyph/envshield
+```
 
-# pnpm
+or
+
+```bash
 pnpm add -D @infocyph/envshield
 ```
 
-## Quick Start
+---
 
-1. Create a `.env.example` file with all required environment variables:
+# Quick Start
+
+### 1️⃣ Create `.env.example`
+
+Define all required environment variables.
 
 ```bash
-# .env.example
 DATABASE_URL=
 API_KEY=
 NEXT_PUBLIC_APP_URL=
 ```
 
-2. Run validation:
+---
+
+### 2️⃣ Validate your environment
 
 ```bash
 npx envshield check
 ```
 
-3. Sync missing variables (adds empty entries to your `.env`):
+EnvShield will detect:
+
+- missing variables
+- empty values
+
+---
+
+### 3️⃣ Sync missing variables
 
 ```bash
 npx envshield sync
 ```
 
-## CLI Commands
+Missing variables will automatically be added to `.env`.
 
-### `check` - Validate environment variables
+---
+
+# CLI Commands
+
+## `check`
+
+Validate your `.env` against `.env.example`.
 
 ```bash
 envshield check [options]
-
-Options:
-  -e, --env <path>      Path to env file (default: ".env")
-  -x, --example <path>  Path to example file (default: ".env.example")
-  --ci                  Run in CI mode (no colors)
-  -h, --help           Display help
 ```
 
-**Examples:**
+### Options
+
+| Option          | Description                   | Default        |
+| --------------- | ----------------------------- | -------------- |
+| `-e, --env`     | Path to env file              | `.env`         |
+| `-x, --example` | Path to example file          | `.env.example` |
+| `--ci`          | Disable colored output for CI | —              |
+
+### Example
 
 ```bash
-# Basic validation
 envshield check
+```
 
-# Custom file paths
+Custom files:
+
+```bash
 envshield check -e .env.local -x .env.example
+```
 
-# CI mode (useful for GitHub Actions, etc.)
+CI pipeline:
+
+```bash
 envshield check --ci
 ```
 
-**Output:**
+---
 
-```bash
-# ✅ Successful validation
-[envshield] Validation passed: All keys are present and populated.
+## `sync`
 
-# ❌ Failed validation
-[envshield] Environment validation failed.
-[envshield] Missing Keys:
-  - DATABASE_URL
-  - API_KEY
-[envshield] Empty Values:
-  - NEXT_PUBLIC_APP_URL
-Suggestion: Run `envshield sync` to add missing keys.
-```
-
-### `sync` - Add missing keys to .env
+Append missing keys from `.env.example` to `.env`.
 
 ```bash
 envshield sync [options]
-
-Options:
-  -e, --env <path>      Path to env file (default: ".env")
-  -x, --example <path>  Path to example file (default: ".env.example")
-  -h, --help           Display help
 ```
 
-**Examples:**
+### Options
+
+| Option          | Description          | Default        |
+| --------------- | -------------------- | -------------- |
+| `-e, --env`     | Path to env file     | `.env`         |
+| `-x, --example` | Path to example file | `.env.example` |
+
+### Example
 
 ```bash
-# Basic sync
 envshield sync
+```
 
-# Sync with custom files
+Custom files:
+
+```bash
 envshield sync -e .env.local -x .env.example
 ```
 
-**Output:**
+---
 
-```bash
-# ✅ Already in sync
-[envshield] Your .env is already in sync with .env.example.
+# Example Output
 
-# ✅ Successfully synced
-[envshield] Added 3 missing keys to .env.
-  + DATABASE_URL
-  + API_KEY
-  + NEXT_PUBLIC_APP_URL
+### Successful Validation
+
+```
+[envshield] Validation passed: All keys are present and populated.
 ```
 
-**Resulting `.env` file:**
+### Failed Validation
 
-```bash
-# Existing content
+```
+[envshield] Environment validation failed.
+
+Missing Keys:
+  - DATABASE_URL
+  - API_KEY
+
+Empty Values:
+  - NEXT_PUBLIC_APP_URL
+
+Suggestion: Run `envshield sync`
+```
+
+---
+
+# Example `.env` After Sync
+
+Before:
+
+```
+EXISTING_KEY=value
+```
+
+After running:
+
+```
+envshield sync
+```
+
+Result:
+
+```
 EXISTING_KEY=value
 
-# Added by envshield
 DATABASE_URL=
 API_KEY=
 NEXT_PUBLIC_APP_URL=
 ```
 
-## Use Cases
+---
 
-### Pre-commit Hook
+# Common Use Cases
 
-Add validation to your pre-commit hooks with husky:
+## Pre-commit Hooks
 
-```json
-// .husky/pre-commit
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+Prevent commits with missing environment variables.
 
+Example using **Husky**:
+
+```bash
 npx envshield check
 ```
 
-### CI/CD Pipeline
+---
+
+## CI/CD Validation
+
+Example GitHub Action:
 
 ```yaml
-# .github/workflows/validate.yml
 name: Validate Environment Variables
+
 on: [push, pull_request]
 
 jobs:
   validate:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
+
       - run: npm ci
       - run: npx envshield check --ci
 ```
 
-### Package.json Scripts
+---
+
+## Package.json Scripts
 
 ```json
 {
   "scripts": {
-    "validate:env": "envshield check",
-    "sync:env": "envshield sync",
+    "env:check": "envshield check",
+    "env:sync": "envshield sync",
     "prepare": "envshield sync"
   }
 }
 ```
 
-## Why envshield?
+---
 
-- **Team Consistency** - Ensure all team members have the same environment variables
-- **Debug Less** - Catch missing environment variables before they cause runtime errors
-- **Onboarding** - New team members can quickly set up their environment
-- **Deployment Safety** - Prevent failed deployments due to missing environment variables
+# Why EnvShield?
 
-## API Reference
+Environment variables often cause problems such as:
 
-You can also use envshield programmatically:
+- Missing variables
+- Empty values
+- Different setups across developers
+- Deployment failures
 
-```typescript
-import { validateEnv, syncEnv } from "envshield";
+EnvShield solves these problems by providing:
 
-// Validate environment variables
+- Fast validation
+- Automatic synchronization
+- CI-friendly workflows
+
+---
+
+# Programmatic Usage
+
+EnvShield can also be used inside Node.js scripts.
+
+```ts
+import { validateEnv, syncEnv } from "@infocyph/envshield";
+
 validateEnv({
   envPath: ".env",
   examplePath: ".env.example",
 });
 
-// Sync missing keys
 syncEnv({
   envPath: ".env",
   examplePath: ".env.example",
 });
 ```
 
-## Comparison
+---
 
-| Feature               | envshield | Other Tools |
-| --------------------- | --------- | ----------- |
-| Zero Configuration    | ✅        | ❌          |
-| Sync Command          | ✅        | ❌          |
-| CI Mode               | ✅        | ⚠️          |
-| TypeScript Support    | ✅        | ⚠️          |
-| Empty Value Detection | ✅        | ❌          |
-| File Size             | < 10KB    | 100KB+      |
+# Feature Comparison
 
-## License
+| Feature               | EnvShield | Typical Tools |
+| --------------------- | --------- | ------------- |
+| Zero Configuration    | ✅        | ❌            |
+| Sync Command          | ✅        | ❌            |
+| Empty Value Detection | ✅        | ❌            |
+| CI Friendly           | ✅        | ⚠️            |
+| TypeScript Support    | ✅        | ⚠️            |
+| Lightweight           | <10KB     | 100KB+        |
 
-MIT © [Mehadi Hasan](https://github.com/mehadihn)
+---
 
-## Contributing
+# Contributing
 
-Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+Contributions are welcome.
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
+2. Create a feature branch
+
+```
+git checkout -b feature/new-feature
+```
+
+3. Commit your changes
+
+```
+git commit -m "Add new feature"
+```
+
+4. Push your branch
+
+```
+git push origin feature/new-feature
+```
+
 5. Open a Pull Request
 
 ---
 
-**Made with ❤️ for the developer community**
+# License
+
+MIT © Mehadi Hasan
+
+---
+
+⭐ If you find this project helpful, consider giving it a star on GitHub.
