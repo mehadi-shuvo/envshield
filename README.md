@@ -4,13 +4,9 @@
 
 **EnvShield** is a lightweight CLI tool that validates and synchronizes `.env` files against `.env.example`, ensuring every developer and deployment environment has the required variables.
 
-<<<<<<< HEAD
-[![npm version](https://www.npmjs.com/package/@infocyph/envshield)](https://www.npmjs.com/package/@infocyph/envshield)
-=======
-Never miss an environment variable again.
+> Never miss an environment variable again.
 
 [![npm version](https://img.shields.io/npm/v/@infocyph/envshield.svg)](https://www.npmjs.com/package/@infocyph/envshield)
->>>>>>> 2eb1cf3 (fix: readme.md content)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ---
