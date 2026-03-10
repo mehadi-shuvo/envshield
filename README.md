@@ -1,10 +1,10 @@
-# ENV-Shield
+# ENV SHIELD
 
-🛡️ **Protect your environment variables across the team**
+**Protect your environment variables across the team**
 
 A lightweight CLI tool that validates and syncs your `.env` files against `.env.example`. Never miss an environment variable again!
 
-[![npm version](https://img.shields.io/npm/v/env-shield.svg)](https://www.npmjs.com/package/env-shield)
+[![npm version](https://img.shields.io/npm/v/envshield.svg)](https://www.npmjs.com/package/envshield)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Features

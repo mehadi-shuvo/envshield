@@ -1,5 +1,11 @@
-node_modules
- dist
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+
+# Environment variables (Sensitive Data)
 .env
-.env.example
 env
+.env.*
+!.env.example
